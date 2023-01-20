@@ -1,14 +1,14 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "3.71.0"
     }
   }
 }
 
 provider "aws" {
-  region     = "us-west-2"
+  region     = "us-west-3"
   access_key = ""
   secret_key = ""
 }
@@ -19,10 +19,10 @@ resource "aws_instance" "myec2" {
   ##
   key_name = "satya"
 
-      vpc_security_group_ids = [aws_security_group.main.id]
+  vpc_security_group_ids = [aws_security_group.main.id]
 
   tags = {
-    Name = "HelloWorld",
+    Name  = "HelloWorld",
     Owner = "ukreddy@erwin.com"
   }
 }
@@ -30,7 +30,7 @@ resource "aws_instance" "myec2" {
 resource "aws_security_group" "main" {
   egress = [
     {
-      cidr_blocks      = [ "0.0.0.0/0", ]
+      cidr_blocks      = ["0.0.0.0/0", ]
       description      = ""
       from_port        = 0
       ipv6_cidr_blocks = []
@@ -41,17 +41,17 @@ resource "aws_security_group" "main" {
       to_port          = 0
     }
   ]
- ingress                = [
-   {
-     cidr_blocks      = [ "0.0.0.0/0", ]
-     description      = ""
-     from_port        = 22
-     ipv6_cidr_blocks = []
-     prefix_list_ids  = []
-     protocol         = "tcp"
-     security_groups  = []
-     self             = false
-     to_port          = 22
-  }
+  ingress = [
+    {
+      cidr_blocks      = ["0.0.0.0/0", ]
+      description      = ""
+      from_port        = 22
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      protocol         = "tcp"
+      security_groups  = []
+      self             = false
+      to_port          = 22
+    }
   ]
 }
